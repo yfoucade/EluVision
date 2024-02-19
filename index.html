@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>EluVision</title>
+    <!-- Import Styles -->
+    <link rel="stylesheet" href="./styles.css" />
+    <!-- Import Vue.js -->
+    <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="nav-bar"></div>
+      
+      <div id="search-bar">
+        <input type="text" placeholder="search">
+      </div>
+
+      <div id="results-list" v-if="all_deputies && state == 'list'">
+        <table>
+            <tr>
+                <th @click="updateSortBy('nom_de_famille')">Nom</th>
+                <th @click="updateSortBy('prenom')">Prenom</th>
+                <th @click="updateSortBy('nom_circo')">Circonscription</th>
+                <th @click="updateSortBy('num_deptmt')">Departement</th>
+                <th @click="updateSortBy('groupe_sigle')">Groupe</th>
+            </tr>
+            <tr v-for="(deputy, index) in filtered_list" :key="index">
+                <td @click="showDetails(index)">{{ deputy.nom_de_famille }}</td>
+                <td>{{ deputy.prenom }}</td>
+                <td>{{ deputy.nom_circo }}</td>
+                <td>{{ deputy.num_deptmt }}</td>
+                <td>{{ deputy.groupe_sigle}}</td>
+            </tr>
+        </table>
+      </div>
+
+      <div id="deputy-details" v-if="state == 'details'">
+            <h1>{{ current_deputy.nom }}</h1>
+            <button @click="showList">Back</button>
+      </div>
+
+      <div id="deputy-details">
+      </div>
+    </div>
+
+    <!-- Import App -->
+    <script src="./main.js"></script>
+
+    <!-- Mount App -->
+    <script>
+      const mountedApp = app.mount('#app')
+    </script>
+  </body>
+</html>
