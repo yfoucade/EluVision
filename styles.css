@@ -46,5 +46,35 @@ th {
 }
 
 tr:nth-child(2n+2) {
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(242, 242, 242);
+}
+
+.deputy-details {
+    width: 50%;
+    max-width: 600px;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.deputy-picture {
+    border-radius: 10px;
+    box-shadow: rgba(149, 157, 165, 0.8) 0px 8px 24px;
+}
+
+.deputy-card {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-evenly; */
+}
+
+.deputy-info {
+    padding-left: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    /* padding-bottom: 2em; */
+}
+
+.twitter-logo {
+    border-radius: 100%;
 }
