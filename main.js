@@ -48,6 +48,7 @@ const app = Vue.createApp({
                 this.search_string = criterion_and_string.search_string.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
             else
                 this.search_string = null;
+            this.state = 'list';
         },
 
         deputyMatchesSearch( deputy_obj, search_string ) {
