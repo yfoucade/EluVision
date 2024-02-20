@@ -38,6 +38,7 @@ const app = Vue.createApp({
             response = await fetch(this.current_deputy.url_nosdeputes_api);
             response_json = await response.json();
             this.deputy_details = response_json.depute;
+            this.deputyDetailsPreprocessing();
             this.state = 'details';
             console.log(`Showing details about ${this.current_deputy.nom}`);
         },
@@ -61,6 +62,24 @@ const app = Vue.createApp({
                    return true;
             }
             return false;
+        },
+
+        deputyDetailsPreprocessing() {
+            urls = {}
+            for ( let site of this.deputy_details.sites_web )
+            {
+                if ( site.site.includes("twitter.com") )
+                    urls.twitter = site.site;
+                else if ( site.site.includes("facebook.com") )
+                    urls.facebook = site.site;
+                else if ( !urls.personnal_website )
+                    urls.personnal_website = site.site;
+            }
+            for ( let email of this.deputy_details.emails )
+                if ( email.email.includes("assemblee-nationale.fr") )
+                    urls.email = email.email;
+            console.log(urls);
+            this.deputy_details.urls = urls;
         }
     },
     beforeMount() {
