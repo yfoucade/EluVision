@@ -19,20 +19,24 @@
     border: none;
     outline: none;
     height: 2em;
-    font-size: 17px;
+    font-size: 18px;
 }
 
 .form-wrapper input {
     border: none;
     outline: none;
     height: 2em;
-    font-size: 17px;
+    font-size: 18px;
 }
 
 th {
-    /* min-width: 200px; */
+    width: 150px;
+    text-align: left;
 }
 
-td {
-    padding-left: 2%;
+#results-list table tr :nth-child(3){
+    width: 230px;
+}
+#results-list table tr :nth-child(4){
+    width: 120px;
 }
