@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="./styles.css" />
   <!-- Import Vue.js -->
   <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -20,9 +21,9 @@
       <table v-if="filtered_list.length">
         <tr>
           <th @click="updateSortBy('nom_de_famille')">Nom</th>
-          <th @click="updateSortBy('prenom')">Prenom</th>
+          <th @click="updateSortBy('prenom')">Prénom</th>
           <th @click="updateSortBy('nom_circo')">Circonscription</th>
-          <th @click="updateSortBy('num_deptmt')">Departement</th>
+          <th @click="updateSortBy('num_deptmt')">Département</th>
           <th @click="updateSortBy('groupe_sigle')">Groupe</th>
         </tr>
         <tr v-for="(deputy, index) in filtered_list" :key="index" @click="showDetails(index)">
@@ -38,7 +39,7 @@
 
     <div class="deputy-details" v-if="state == 'details'">
 
-      <div class="deputy-card">
+      <!-- <div class="deputy-card">
         <div class="picture-div">
           <img class="deputy-picture" :src="'https://nosdeputes.fr/depute/photo/' + deputy_details.slug + '/200'">
         </div>
@@ -47,30 +48,46 @@
           <h2 class="card-component">{{ deputy_details.groupe.organisme }}</h2>
           <p class="card-component">{{ deputy_details.nom_circo }} ({{ deputy_details.num_circo }})</p>
         </div>
+      </div> -->
+
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img class="img-fluid rounded-start" :src="'https://nosdeputes.fr/depute/photo/' + deputy_details.slug + '/250'">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{ (deputy_details.sexe == 'F' ? 'Mme ' : 'M. ') + deputy_details.nom }}</h5>
+              <p class="card-text">{{ deputy_details.groupe.organisme }}</p>
+              <p class="card-text"><small class="text-body-secondary">{{ deputy_details.nom_circo }} ({{ deputy_details.num_circo }})</small></p>
+              <div class="external-links">
+                <div class="personnal-website" v-if="deputy_details.urls.personnal_website">
+                  <a :href="deputy_details.urls.personnal_website" target="_blank">
+                    <img src="./assets/website_icon.png">
+                  </a>
+                </div>
+                <div class="twitter" v-if="deputy_details.urls.twitter">
+                  <a :href="deputy_details.urls.twitter" target="_blank">
+                    <img src="https://abs.twimg.com/favicons/twitter.3.ico">
+                  </a>
+                </div>
+                <div class="facebook" v-if="deputy_details.urls.facebook">
+                  <a :href="deputy_details.urls.facebook" target="_blank">
+                    <img src="./assets/facebook_icon.png">
+                  </a>
+                </div>
+                <div class="email" v-if="deputy_details.urls.email">
+                  <a :href="'mailto: ' + deputy_details.urls.email" target="_blank">
+                    <img src="./assets/inbox_email.png">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="external-links">
-        <div class="personnal-website" v-if="deputy_details.urls.personnal_website">
-          <a :href="deputy_details.urls.personnal_website" target="_blank">
-            <img src="./assets/website_icon.png">
-          </a>
-        </div>
-        <div class="twitter" v-if="deputy_details.urls.twitter">
-          <a :href="deputy_details.urls.twitter" target="_blank">
-            <img src="https://abs.twimg.com/favicons/twitter.3.ico">
-          </a>
-        </div>
-        <div class="facebook" v-if="deputy_details.urls.facebook">
-          <a :href="deputy_details.urls.facebook" target="_blank">
-            <img src="./assets/facebook_icon.png">
-          </a>
-        </div>
-        <div class="email" v-if="deputy_details.urls.email">
-          <a :href="'mailto: ' + deputy_details.urls.email" target="_blank">
-            <img src="./assets/inbox_email.png">
-          </a>
-        </div>
-      </div>
+      
       <!-- <div class="mandate-info">
         <p>{{ deputy_details.groupe.fonction }} du groupe {{ deputy_details.groupe.organisme }} depuis le {{ deputy_details.groupe.debut_fonction }}</p>
       </div> -->

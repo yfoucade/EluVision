@@ -97,9 +97,13 @@ tr:hover {
     flex-direction: row;
     justify-content: space-between;
     width: fit-content;
-    margin: auto;
-    margin-top: 20px;
-    margin-bottom: 30px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.card-body {
+    height: 100%;
 }
 
 .external-links img {
@@ -112,6 +116,7 @@ tr:hover {
 #app {
     margin-bottom: 50px;
 }
+
 .mentions-legales {
     position: fixed;
     width: 100%;
