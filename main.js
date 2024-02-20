@@ -33,8 +33,11 @@ const app = Vue.createApp({
             this.sort_by = criterion;
             this.ascending = 1;
         },
-        showDetails(index) {
+        async showDetails(index) {
             this.current_deputy = this.filtered_list[index];
+            response = await fetch(this.current_deputy.url_nosdeputes_api);
+            response_json = await response.json();
+            this.deputy_details = response_json.depute;
             this.state = 'details';
             console.log(`Showing details about ${this.current_deputy.nom}`);
         },

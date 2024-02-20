@@ -1,56 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>EluVision</title>
-    <!-- Import Styles -->
-    <link rel="stylesheet" href="./styles.css" />
-    <!-- Import Vue.js -->
-    <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
-  </head>
-  <body>
-    <div id="app">
-      <div class="nav-bar"></div>
-      
-      <search-bar @search-string-updated="updateSearchString"></search-bar>
 
-      <div id="results-list" v-if="all_deputies && state == 'list'">
-        <table v-if="filtered_list.length">
-            <tr>
-                <th @click="updateSortBy('nom_de_famille')">Nom</th>
-                <th @click="updateSortBy('prenom')">Prenom</th>
-                <th @click="updateSortBy('nom_circo')">Circonscription</th>
-                <th @click="updateSortBy('num_deptmt')">Departement</th>
-                <th @click="updateSortBy('groupe_sigle')">Groupe</th>
-            </tr>
-            <tr v-for="(deputy, index) in filtered_list" :key="index">
-                <td @click="showDetails(index)">{{ deputy.nom_de_famille }}</td>
-                <td @click="showDetails(index)">{{ deputy.prenom }}</td>
-                <td>{{ deputy.nom_circo }}</td>
-                <td>{{ deputy.num_deptmt }}</td>
-                <td>{{ deputy.groupe_sigle}}</td>
-            </tr>
-        </table>
-        <p v-else>Aucun résultat ne correspond à votre recherche</p>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <title>EluVision</title>
+  <!-- Import Styles -->
+  <link rel="stylesheet" href="./styles.css" />
+  <!-- Import Vue.js -->
+  <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
+</head>
 
-      <div id="deputy-details" v-if="state == 'details'">
-            <h1>{{ current_deputy.nom }}</h1>
-            <button @click="showList">Back</button>
-      </div>
+<body>
+  <div id="app">
+    <div class="nav-bar"></div>
 
-      <div id="deputy-details">
-      </div>
+    <search-bar @search-string-updated="updateSearchString"></search-bar>
+
+    <div id="results-list" v-if="all_deputies && state == 'list'">
+      <table v-if="filtered_list.length">
+        <tr>
+          <th @click="updateSortBy('nom_de_famille')">Nom</th>
+          <th @click="updateSortBy('prenom')">Prenom</th>
+          <th @click="updateSortBy('nom_circo')">Circonscription</th>
+          <th @click="updateSortBy('num_deptmt')">Departement</th>
+          <th @click="updateSortBy('groupe_sigle')">Groupe</th>
+        </tr>
+        <tr v-for="(deputy, index) in filtered_list" :key="index">
+          <td @click="showDetails(index)">{{ deputy.nom_de_famille }}</td>
+          <td @click="showDetails(index)">{{ deputy.prenom }}</td>
+          <td>{{ deputy.nom_circo }}</td>
+          <td>{{ deputy.num_deptmt }}</td>
+          <td>{{ deputy.groupe_sigle}}</td>
+        </tr>
+      </table>
+      <p v-else>Aucun résultat ne correspond à votre recherche</p>
     </div>
 
-    <!-- Import App -->
-    <script src="./main.js"></script>
-    <script src="./components/SearchBar.js"></script>
+    <div class="deputy-details" v-if="state == 'details'">
 
-    <!-- Mount App -->
-    <script>
-      const mountedApp = app.mount('#app')
-    </script>
+      <div class="deputy-card">
+        <div class="picture-div">
+          <img class="deputy-picture" :src="'https://nosdeputes.fr/depute/photo/' + deputy_details.slug + '/200'">
+        </div>
+        <div class="deputy-info">
+          <h1>{{ deputy_details.nom }}</h1>
+          <h2>{{ deputy_details.groupe.organisme }}</h2>
+          <p>{{ deputy_details.nom_circo }} ({{ deputy_details.num_circo }})</p>
+        </div>
+      </div>
 
-  </body>
+      <!-- <div class="mandate-info">
+        <p>{{ deputy_details.groupe.fonction }} du groupe {{ deputy_details.groupe.organisme }} depuis le {{ deputy_details.groupe.debut_fonction }}</p>
+      </div> -->
+
+      <!-- TODO: lien vers le profile assemblee nationale -->
+
+      <div class="responsibilities">
+        <div class="parliamentary-responsibilities">
+          <h2>Responsabilités parlementaires</h2>
+          <ul>
+            <li v-for="resp in deputy_details.responsabilites">
+              {{ resp.responsabilite.organisme }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="contact-deputy">
+        <h2>Contacts</h2>
+        <div class="websites">
+          <h3>Sites web</h3>
+          <ul>
+            <li v-for="website in deputy_details.sites_web">
+              <a :href="website.site">{{ website.site }}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="emails">
+          <h3>Emails</h3>
+          <ul>
+            <li v-for="email in deputy_details.emails">
+              <a :href="'mailto: ' + email.email">{{ email.email }}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="addresses">
+          <h3>Adresses</h3>
+          <ul>
+            <li v-for="address in deputy_details.adresses">
+              <p>{{ address.adresse }}</p>
+            </li>
+          </ul>
+        </div>
+        <div class="twitter" v-show="deputy_details.twitter">
+          <!-- TODO: test whether there is a Twitter attribute -->
+          <p><a :href="'https://twitter.com/' + deputy_details.twitter"><img class="twitter-logo" src="https://abs.twimg.com/favicons/twitter.3.ico"></a></p>
+          <button @click="showList">Back</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="deputy-details">
+    </div>
+  </div>
+
+  <!-- Import App -->
+  <script src="./main.js"></script>
+  <script src="./components/SearchBar.js"></script>
+
+  <!-- Mount App -->
+  <script>
+    const mountedApp = app.mount('#app')
+  </script>
+
+</body>
+
 </html>
