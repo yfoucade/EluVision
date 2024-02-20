@@ -25,7 +25,7 @@
             </tr>
             <tr v-for="(deputy, index) in filtered_list" :key="index">
                 <td @click="showDetails(index)">{{ deputy.nom_de_famille }}</td>
-                <td>{{ deputy.prenom }}</td>
+                <td @click="showDetails(index)">{{ deputy.prenom }}</td>
                 <td>{{ deputy.nom_circo }}</td>
                 <td>{{ deputy.num_deptmt }}</td>
                 <td>{{ deputy.groupe_sigle}}</td>
