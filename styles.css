@@ -29,6 +29,10 @@
     font-size: 18px;
 }
 
+table {
+    border-collapse: collapse;
+}
+
 th {
     width: 150px;
     text-align: left;
@@ -39,4 +43,8 @@ th {
 }
 #results-list table tr :nth-child(4){
     width: 120px;
+}
+
+tr:nth-child(2n+2) {
+    background-color: rgb(240, 240, 240);
 }
