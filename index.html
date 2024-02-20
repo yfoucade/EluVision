@@ -25,9 +25,9 @@
           <th @click="updateSortBy('num_deptmt')">Departement</th>
           <th @click="updateSortBy('groupe_sigle')">Groupe</th>
         </tr>
-        <tr v-for="(deputy, index) in filtered_list" :key="index">
-          <td @click="showDetails(index)">{{ deputy.nom_de_famille }}</td>
-          <td @click="showDetails(index)">{{ deputy.prenom }}</td>
+        <tr v-for="(deputy, index) in filtered_list" :key="index" @click="showDetails(index)">
+          <td>{{ deputy.nom_de_famille }}</td>
+          <td>{{ deputy.prenom }}</td>
           <td>{{ deputy.nom_circo }}</td>
           <td>{{ deputy.num_deptmt }}</td>
           <td>{{ deputy.groupe_sigle}}</td>
@@ -43,12 +43,34 @@
           <img class="deputy-picture" :src="'https://nosdeputes.fr/depute/photo/' + deputy_details.slug + '/200'">
         </div>
         <div class="deputy-info">
-          <h1>{{ deputy_details.nom }}</h1>
-          <h2>{{ deputy_details.groupe.organisme }}</h2>
-          <p>{{ deputy_details.nom_circo }} ({{ deputy_details.num_circo }})</p>
+          <h1 class="card-component">{{ (deputy_details.sexe == 'F' ? 'Mme ' : 'M. ') + deputy_details.nom }}</h1>
+          <h2 class="card-component">{{ deputy_details.groupe.organisme }}</h2>
+          <p class="card-component">{{ deputy_details.nom_circo }} ({{ deputy_details.num_circo }})</p>
         </div>
       </div>
 
+      <div class="external-links">
+        <div class="personnal-website" v-if="deputy_details.urls.personnal_website">
+          <a :href="deputy_details.urls.personnal_website" target="_blank">
+            <img src="./assets/website_icon.png">
+          </a>
+        </div>
+        <div class="twitter" v-if="deputy_details.urls.twitter">
+          <a :href="deputy_details.urls.twitter" target="_blank">
+            <img src="https://abs.twimg.com/favicons/twitter.3.ico">
+          </a>
+        </div>
+        <div class="facebook" v-if="deputy_details.urls.facebook">
+          <a :href="deputy_details.urls.facebook" target="_blank">
+            <img src="./assets/facebook_icon.png">
+          </a>
+        </div>
+        <div class="email" v-if="deputy_details.urls.email">
+          <a :href="'mailto: ' + deputy_details.urls.email" target="_blank">
+            <img src="./assets/inbox_email.png">
+          </a>
+        </div>
+      </div>
       <!-- <div class="mandate-info">
         <p>{{ deputy_details.groupe.fonction }} du groupe {{ deputy_details.groupe.organisme }} depuis le {{ deputy_details.groupe.debut_fonction }}</p>
       </div> -->
@@ -66,38 +88,15 @@
         </div>
       </div>
 
-      <div class="contact-deputy">
-        <h2>Contacts</h2>
-        <div class="websites">
-          <h3>Sites web</h3>
-          <ul>
-            <li v-for="website in deputy_details.sites_web">
-              <a :href="website.site">{{ website.site }}</a>
-            </li>
-          </ul>
-        </div>
-        <div class="emails">
-          <h3>Emails</h3>
-          <ul>
-            <li v-for="email in deputy_details.emails">
-              <a :href="'mailto: ' + email.email">{{ email.email }}</a>
-            </li>
-          </ul>
-        </div>
-        <div class="addresses">
-          <h3>Adresses</h3>
-          <ul>
-            <li v-for="address in deputy_details.adresses">
-              <p>{{ address.adresse }}</p>
-            </li>
-          </ul>
-        </div>
-        <div class="twitter" v-show="deputy_details.twitter">
-          <!-- TODO: test whether there is a Twitter attribute -->
-          <p><a :href="'https://twitter.com/' + deputy_details.twitter"><img class="twitter-logo" src="https://abs.twimg.com/favicons/twitter.3.ico"></a></p>
-          <button @click="showList">Back</button>
-        </div>
+      <div class="addresses">
+        <h2>Adresses</h2>
+        <ul>
+          <li v-for="address in deputy_details.adresses">
+            <p>{{ address.adresse }}</p>
+          </li>
+        </ul>
       </div>
+      <button @click="showList">Back</button>
 
     </div>
 
@@ -114,6 +113,11 @@
     const mountedApp = app.mount('#app')
   </script>
 
+  <footer>
+    <div class="mentions-legales">
+      <p>Mentions légales</p>
+    </div>
+  </footer>
 </body>
 
 </html>
