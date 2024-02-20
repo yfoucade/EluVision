@@ -5,12 +5,17 @@ const app = Vue.createApp({
             sort_by: 'nom_de_famille',
             current_deputy: null,
             ascending: 1,
+            search_criterion: null,
+            search_string: "",
             state: 'list',
         }
     },
     computed: {
         filtered_list() {
-            return this.all_deputies.sort( (a,b) => this.ascending * a[this.sort_by].localeCompare(b[this.sort_by]) );
+            let res = this.all_deputies;
+            if ( this.search_string )
+                res = this.all_deputies.filter( (deputy_obj) => this.deputyMatchesSearch(deputy_obj, this.search_string) );
+            return res.sort( (a,b) => this.ascending * a[this.sort_by].localeCompare(b[this.sort_by]) );
         }
     },
     methods: {
@@ -35,6 +40,23 @@ const app = Vue.createApp({
         },
         showList() {
             this.state = 'list';
+        },
+
+        updateSearchString( criterion_and_string ) {
+            this.search_criterion = criterion_and_string.search_criterion;
+            if ( criterion_and_string.search_string )
+                this.search_string = criterion_and_string.search_string.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+            else
+                this.search_string = null;
+        },
+
+        deputyMatchesSearch( deputy_obj, search_string ) {
+            for (colname of ( this.search_criterion ? [this.search_criterion] : ['nom_de_famille', 'prenom', 'nom_circo', 'num_deptmt', 'groupe_sigle', 'parti_ratt_financier']) )
+            {
+                if (deputy_obj[colname].toLowerCase().includes(search_string))
+                   return true;
+            }
+            return false;
         }
     },
     beforeMount() {

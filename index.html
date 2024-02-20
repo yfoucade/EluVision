@@ -12,12 +12,10 @@
     <div id="app">
       <div class="nav-bar"></div>
       
-      <div id="search-bar">
-        <input type="text" placeholder="search">
-      </div>
+      <search-bar @search-string-updated="updateSearchString"></search-bar>
 
       <div id="results-list" v-if="all_deputies && state == 'list'">
-        <table>
+        <table v-if="filtered_list.length">
             <tr>
                 <th @click="updateSortBy('nom_de_famille')">Nom</th>
                 <th @click="updateSortBy('prenom')">Prenom</th>
@@ -33,6 +31,7 @@
                 <td>{{ deputy.groupe_sigle}}</td>
             </tr>
         </table>
+        <p v-else>Aucun résultat ne correspond à votre recherche</p>
       </div>
 
       <div id="deputy-details" v-if="state == 'details'">
@@ -46,10 +45,12 @@
 
     <!-- Import App -->
     <script src="./main.js"></script>
+    <script src="./components/SearchBar.js"></script>
 
     <!-- Mount App -->
     <script>
       const mountedApp = app.mount('#app')
     </script>
+
   </body>
 </html>
