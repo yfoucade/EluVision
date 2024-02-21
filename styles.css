@@ -42,11 +42,15 @@ th {
     text-align: left;
 }
 
+th span {
+    margin-right: 5px;
+}
+
 #results-list table tr :nth-child(3){
     width: 230px;
 }
 #results-list table tr :nth-child(4){
-    width: 120px;
+    width: 150px;
 }
 
 tr:nth-child(2n+2) {
@@ -126,4 +130,8 @@ tr:hover {
     margin: auto;
     text-align: center;
     padding-top: 10px;
+}
+
+th.true::after {
+
 }
