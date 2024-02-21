@@ -2,6 +2,10 @@ body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 .nav-bar {
     margin-top: 15px;
 }
@@ -180,13 +184,40 @@ tr:hover {
     padding-bottom: 100px;
 }
 
-.mentions-legales {
+footer {
     position: fixed;
     width: 100%;
     height: 50px;
     background-color: white;
     bottom: 0;
-    margin: auto;
-    text-align: center;
     padding-top: 10px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    margin: auto;
+}
+
+li {
+    list-style-type: none;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.responsibilities {
+    margin-top: 30px;
+}
+
+.addresses {
+    margin-top: 30px;
+}
+
+.back-button {
+    margin-top: 30px;
+}
+
+.legal-notice {
+    margin-left: 20px;
 }
