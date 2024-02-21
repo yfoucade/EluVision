@@ -2,6 +2,10 @@ body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+.nav-bar {
+    margin-top: 15px;
+}
+
 .eluvision {
     font-family: Anton, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-top: 5px;
@@ -160,8 +164,4 @@ tr:hover {
     margin: auto;
     text-align: center;
     padding-top: 10px;
-}
-
-th.true::after {
-
 }
