@@ -4,9 +4,13 @@ const app = Vue.createApp({
             all_deputies: null,
             sort_by: 'nom_de_famille',
             current_deputy: null,
+            deputy_tag_img: "",
             ascending: true,
+            mousePosX: 0,
+            mousePosY: 0,
             search_criterion: null,
             search_string: "",
+            show_deputy_tag: false,
             state: 'list',
             departments_preposition: departments_preposition,
         }
@@ -48,6 +52,7 @@ const app = Vue.createApp({
 
         showList() {
             this.state = 'list';
+            this.hideDeputyTag();
         },
 
         updateSearchString( criterion_and_string ) {
@@ -86,8 +91,24 @@ const app = Vue.createApp({
             this.deputy_details.urls = urls;
         },
 
+        showDeputyTag(index) {
+            this.deputy_tag_img = 'https://nosdeputes.fr/depute/photo/' + this.filtered_list[index].slug + '/100';
+            this.show_deputy_tag = true;
+        },
+
+        hideDeputyTag() {
+            this.show_deputy_tag = false;
+        }
     },
+
     beforeMount() {
         this.init_deputy_list();
+    },
+
+    mounted() {
+        document.addEventListener("mousemove", (event) => {
+            this.mousePosX = event.pageX;
+            this.mousePosY = event.pageY;
+        });
     }
 })

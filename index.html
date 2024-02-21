@@ -28,92 +28,97 @@
     </div>
 
     <div id="results-list" v-if="all_deputies && state == 'list'">
-      <table v-if="filtered_list.length">
-        <tr>
-          <th @click="updateSortBy('nom_de_famille')">
-            <span>Nom</span>
-            <span class="sort-icon" v-if="sort_by=='nom_de_famille'">
-              <svg v-if="ascending" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
-                class="bi bi-sort-down-alt" viewBox="0 0 16 16">
-                <path
-                  d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5" />
-              </svg>
-              <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
-                class="bi bi-sort-up" viewBox="0 0 16 16">
-                <path
-                  d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.5.5 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
-              </svg>
-            </span>
-          </th>
-          <th @click="updateSortBy('prenom')">
-            <span>Prénom</span>
-            <span class="sort-icon" v-if="sort_by=='prenom'">
-              <svg v-if="ascending" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
-                class="bi bi-sort-down-alt" viewBox="0 0 16 16">
-                <path
-                  d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5" />
-              </svg>
-              <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
-                class="bi bi-sort-up" viewBox="0 0 16 16">
-                <path
-                  d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.5.5 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
-              </svg>
-            </span>
-          </th>
-          <th @click="updateSortBy('nom_circo')">
-            <span>Circonscription</span>
-            <span class="sort-icon" v-if="sort_by=='nom_circo'">
-              <svg v-if="ascending" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
-                class="bi bi-sort-down-alt" viewBox="0 0 16 16">
-                <path
-                  d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5" />
-              </svg>
-              <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
-                class="bi bi-sort-up" viewBox="0 0 16 16">
-                <path
-                  d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.5.5 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
-              </svg>
-            </span>
-          </th>
-          <th @click="updateSortBy('num_deptmt')">
-            <span>Département</span>
-            <span class="sort-icon" v-if="sort_by=='num_deptmt'">
-              <svg v-if="ascending" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
-                class="bi bi-sort-down-alt" viewBox="0 0 16 16">
-                <path
-                  d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5" />
-              </svg>
-              <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
-                class="bi bi-sort-up" viewBox="0 0 16 16">
-                <path
-                  d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.5.5 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
-              </svg>
-            </span>
-          </th>
-          <th @click="updateSortBy('groupe_sigle')">
-            <span>Groupe</span>
-            <span class="sort-icon" v-if="sort_by=='groupe_sigle'">
-              <svg v-if="ascending" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
-                class="bi bi-sort-down-alt" viewBox="0 0 16 16">
-                <path
-                  d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5" />
-              </svg>
-              <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
-                class="bi bi-sort-up" viewBox="0 0 16 16">
-                <path
-                  d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.5.5 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
-              </svg>
-            </span>
-          </th>
-        </tr>
-        <tr v-for="(deputy, index) in filtered_list" :key="index" @click="showDetails(index)">
-          <td>{{ deputy.nom_de_famille }}</td>
-          <td>{{ deputy.prenom }}</td>
-          <td>{{ deputy.nom_circo }}</td>
-          <td>{{ deputy.num_deptmt }}</td>
-          <td>{{ deputy.groupe_sigle}}</td>
-        </tr>
-      </table>
+      <div class="results-found" v-if="filtered_list.length">
+        <table>
+          <tr>
+            <th @click="updateSortBy('nom_de_famille')">
+              <span>Nom</span>
+              <span class="sort-icon" v-if="sort_by=='nom_de_famille'">
+                <svg v-if="ascending" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
+                  class="bi bi-sort-down-alt" viewBox="0 0 16 16">
+                  <path
+                    d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5" />
+                </svg>
+                <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-sort-up"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.5.5 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
+                </svg>
+              </span>
+            </th>
+            <th @click="updateSortBy('prenom')">
+              <span>Prénom</span>
+              <span class="sort-icon" v-if="sort_by=='prenom'">
+                <svg v-if="ascending" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
+                  class="bi bi-sort-down-alt" viewBox="0 0 16 16">
+                  <path
+                    d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5" />
+                </svg>
+                <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-sort-up"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.5.5 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
+                </svg>
+              </span>
+            </th>
+            <th @click="updateSortBy('nom_circo')">
+              <span>Circonscription</span>
+              <span class="sort-icon" v-if="sort_by=='nom_circo'">
+                <svg v-if="ascending" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
+                  class="bi bi-sort-down-alt" viewBox="0 0 16 16">
+                  <path
+                    d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5" />
+                </svg>
+                <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-sort-up"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.5.5 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
+                </svg>
+              </span>
+            </th>
+            <th @click="updateSortBy('num_deptmt')">
+              <span>Département</span>
+              <span class="sort-icon" v-if="sort_by=='num_deptmt'">
+                <svg v-if="ascending" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
+                  class="bi bi-sort-down-alt" viewBox="0 0 16 16">
+                  <path
+                    d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5" />
+                </svg>
+                <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-sort-up"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.5.5 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
+                </svg>
+              </span>
+            </th>
+            <th @click="updateSortBy('groupe_sigle')">
+              <span>Groupe</span>
+              <span class="sort-icon" v-if="sort_by=='groupe_sigle'">
+                <svg v-if="ascending" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
+                  class="bi bi-sort-down-alt" viewBox="0 0 16 16">
+                  <path
+                    d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5" />
+                </svg>
+                <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-sort-up"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.5.5 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
+                </svg>
+              </span>
+            </th>
+          </tr>
+          <tr v-for="(deputy, index) in filtered_list" :key="index" @click="showDetails(index)" @mouseover="showDeputyTag(index)" @mouseleave="hideDeputyTag">
+            <td>{{ deputy.nom_de_famille }}</td>
+            <td>{{ deputy.prenom }}</td>
+            <td>{{ deputy.nom_circo }}</td>
+            <td>{{ deputy.num_deptmt }}</td>
+            <td>{{ deputy.groupe_sigle}}</td>
+          </tr>
+        </table>
+        <div class="deputy-tag" v-if="show_deputy_tag" :style="{position: 'absolute', top: `${mousePosY + 3}px`, left: `${mousePosX}px`,}">
+          <img :src="deputy_tag_img">
+        </div>
+      </div>
       <p v-else>Aucun résultat ne correspond à votre recherche</p>
     </div>
 
