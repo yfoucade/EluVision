@@ -58,7 +58,7 @@ const app = Vue.createApp({
         deputyMatchesSearch( deputy_obj, search_string ) {
             for (colname of ( this.search_criterion ? [this.search_criterion] : ['nom_de_famille', 'prenom', 'nom_circo', 'num_deptmt', 'groupe_sigle', 'parti_ratt_financier']) )
             {
-                if (deputy_obj[colname].toLowerCase().includes(search_string))
+                if (deputy_obj[colname].normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(search_string))
                    return true;
             }
             return false;
