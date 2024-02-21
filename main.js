@@ -8,6 +8,7 @@ const app = Vue.createApp({
             search_criterion: null,
             search_string: "",
             state: 'list',
+            departments_preposition: departments_preposition,
         }
     },
     computed: {
@@ -25,6 +26,7 @@ const app = Vue.createApp({
             this.all_deputies = response_json.deputes.map( (obj) => {return obj.depute} );
             console.log(this.all_deputies);
         },
+
         updateSortBy(criterion) {
             if ( criterion == this.sort_by ) {
                 this.ascending = !this.ascending;
@@ -33,6 +35,7 @@ const app = Vue.createApp({
             this.sort_by = criterion;
             this.ascending = true;
         },
+
         async showDetails(index) {
             this.current_deputy = this.filtered_list[index];
             response = await fetch(this.current_deputy.url_nosdeputes_api);
@@ -42,6 +45,7 @@ const app = Vue.createApp({
             this.state = 'details';
             console.log(`Showing details about ${this.current_deputy.nom}`);
         },
+
         showList() {
             this.state = 'list';
         },
@@ -80,7 +84,8 @@ const app = Vue.createApp({
                     urls.email = email.email;
             console.log(urls);
             this.deputy_details.urls = urls;
-        }
+        },
+
     },
     beforeMount() {
         this.init_deputy_list();
