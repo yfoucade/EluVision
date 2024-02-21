@@ -19,7 +19,7 @@ app.component('search-bar', {
                 <option value="num_deptmt">Numéro de département</option>
                 <option value="parti_ratt_financier">Parti</option>
             </select>
-            <input type="text" placeholder="Chercher un député.." v-model="search_string" @input="onChange">
+            <input type="text" placeholder="Chercher un·e député·e" v-model="search_string" @input="onChange">
         </div>
     </div>
     `,
