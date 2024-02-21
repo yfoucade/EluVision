@@ -15,8 +15,7 @@ app.component('search-bar', {
                 <option value="" selected>Tous</option>
                 <option value="nom_de_famille">Nom</option>
                 <option value="prenom">Prénom</option>
-                <option value="nom_circo">Circonscription</option>
-                <option value="num_deptmt">Numéro de département</option>
+                <option value="nom_circo">Département</option>
                 <option value="parti_ratt_financier">Parti</option>
             </select>
             <input type="text" placeholder="Chercher un·e député·e" v-model="search_string" @input="onChange">
