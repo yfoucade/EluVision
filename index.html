@@ -6,6 +6,9 @@
   <title>EluVision</title>
   <!-- Import Styles -->
   <link rel="stylesheet" href="./styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
   <!-- Import Vue.js -->
   <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
   <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -15,9 +18,14 @@
 
 <body>
   <div id="app">
-    <div class="nav-bar"></div>
-
-    <search-bar @search-string-updated="updateSearchString"></search-bar>
+    <div class="nav-bar">
+      <div class="nav-bar-content">
+        <div class="eluvision" @click="showList">
+          <h1>ÉluVision</h1>
+        </div>
+        <search-bar @search-string-updated="updateSearchString"></search-bar>
+      </div>
+    </div>
 
     <div id="results-list" v-if="all_deputies && state == 'list'">
       <table v-if="filtered_list.length">
@@ -25,12 +33,12 @@
           <th @click="updateSortBy('nom_de_famille')">
             <span>Nom</span>
             <span class="sort-icon" v-if="sort_by=='nom_de_famille'">
-              <svg v-if="ascending" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              <svg v-if="ascending" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
                 class="bi bi-sort-down-alt" viewBox="0 0 16 16">
                 <path
                   d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5" />
               </svg>
-              <svg v-else xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
                 class="bi bi-sort-up" viewBox="0 0 16 16">
                 <path
                   d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.5.5 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
@@ -40,12 +48,12 @@
           <th @click="updateSortBy('prenom')">
             <span>Prénom</span>
             <span class="sort-icon" v-if="sort_by=='prenom'">
-              <svg v-if="ascending" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              <svg v-if="ascending" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
                 class="bi bi-sort-down-alt" viewBox="0 0 16 16">
                 <path
                   d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5" />
               </svg>
-              <svg v-else xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
                 class="bi bi-sort-up" viewBox="0 0 16 16">
                 <path
                   d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.5.5 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
@@ -55,12 +63,12 @@
           <th @click="updateSortBy('nom_circo')">
             <span>Circonscription</span>
             <span class="sort-icon" v-if="sort_by=='nom_circo'">
-              <svg v-if="ascending" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              <svg v-if="ascending" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
                 class="bi bi-sort-down-alt" viewBox="0 0 16 16">
                 <path
                   d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5" />
               </svg>
-              <svg v-else xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
                 class="bi bi-sort-up" viewBox="0 0 16 16">
                 <path
                   d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.5.5 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
@@ -70,12 +78,12 @@
           <th @click="updateSortBy('num_deptmt')">
             <span>Département</span>
             <span class="sort-icon" v-if="sort_by=='num_deptmt'">
-              <svg v-if="ascending" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              <svg v-if="ascending" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
                 class="bi bi-sort-down-alt" viewBox="0 0 16 16">
                 <path
                   d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5" />
               </svg>
-              <svg v-else xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
                 class="bi bi-sort-up" viewBox="0 0 16 16">
                 <path
                   d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.5.5 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
@@ -85,12 +93,12 @@
           <th @click="updateSortBy('groupe_sigle')">
             <span>Groupe</span>
             <span class="sort-icon" v-if="sort_by=='groupe_sigle'">
-              <svg v-if="ascending" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              <svg v-if="ascending" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
                 class="bi bi-sort-down-alt" viewBox="0 0 16 16">
                 <path
                   d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5" />
               </svg>
-              <svg v-else xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black"
                 class="bi bi-sort-up" viewBox="0 0 16 16">
                 <path
                   d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.5.5 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
@@ -277,7 +285,8 @@
           </li>
         </ul>
       </div>
-      <button @click="showList">Back</button>
+
+      <button @click="showList">Retour</button>
 
     </div>
 

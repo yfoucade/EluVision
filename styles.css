@@ -2,6 +2,17 @@ body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+.eluvision {
+    font-family: Anton, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 5px;
+    height: 100%;
+    margin-right: 30px;
+}
+
+.eluvision:hover {
+    cursor: pointer;
+}
+
 .form-wrapper {
     width: fit-content;
     height: fit-content;
@@ -17,6 +28,25 @@ body {
     width: fit-content;
     margin: auto;
     margin-top: 30px;
+}
+
+.nav-bar-content {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    margin: auto;
+}
+
+.home-icon {
+    margin-right: 40px;
+}
+
+.home-icon svg {
+    margin-top: 10px
+}
+
+.home-icon svg:hover {
+    cursor: pointer;
 }
 
 .form-wrapper select {
