@@ -98,7 +98,11 @@ const app = Vue.createApp({
 
         hideDeputyTag() {
             this.show_deputy_tag = false;
-        }
+        },
+
+        showLegalNotice() {
+            this.state = 'legal_notice';
+        },
     },
 
     beforeMount() {

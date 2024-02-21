@@ -10,6 +10,7 @@ body {
     margin-top: 15px;
 }
 
+
 .eluvision {
     font-family: Anton, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-top: 5px;
@@ -190,7 +191,6 @@ footer {
     height: 50px;
     background-color: white;
     bottom: 0;
-    padding-top: 10px;
 }
 
 .footer-content {
@@ -218,6 +218,30 @@ li {
     margin-top: 30px;
 }
 
-.legal-notice {
+.legal-notice-link {
     margin-left: 20px;
+    padding-top: 10px;
+}
+
+.legal-notice-link:hover {
+    cursor: pointer;
+}
+
+.license img {
+    width: 70px;
+    padding-top: 4px;
+}
+
+.legal-notice {
+    margin-top: 30px;
+}
+
+.legal-notice-content {
+    width: 50%;
+    margin: auto;
+    text-align: justify;
+}
+
+.legal-notice-content h3 {
+    margin-top: 25px;
 }
