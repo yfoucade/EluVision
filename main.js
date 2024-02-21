@@ -4,7 +4,7 @@ const app = Vue.createApp({
             all_deputies: null,
             sort_by: 'nom_de_famille',
             current_deputy: null,
-            ascending: 1,
+            ascending: true,
             search_criterion: null,
             search_string: "",
             state: 'list',
@@ -15,7 +15,7 @@ const app = Vue.createApp({
             let res = this.all_deputies;
             if ( this.search_string )
                 res = this.all_deputies.filter( (deputy_obj) => this.deputyMatchesSearch(deputy_obj, this.search_string) );
-            return res.sort( (a,b) => this.ascending * a[this.sort_by].localeCompare(b[this.sort_by]) );
+            return res.sort( (a,b) => (2 * this.ascending - 1) * a[this.sort_by].localeCompare(b[this.sort_by]) );
         }
     },
     methods: {
@@ -27,11 +27,11 @@ const app = Vue.createApp({
         },
         updateSortBy(criterion) {
             if ( criterion == this.sort_by ) {
-                this.ascending = -this.ascending;
+                this.ascending = !this.ascending;
                 return;
             }
             this.sort_by = criterion;
-            this.ascending = 1;
+            this.ascending = true;
         },
         async showDetails(index) {
             this.current_deputy = this.filtered_list[index];
