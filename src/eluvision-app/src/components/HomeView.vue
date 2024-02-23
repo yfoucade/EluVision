@@ -198,3 +198,48 @@ export default {
   }
 }
 </script>
+
+<style>
+#results-list {
+    width: fit-content;
+    max-height: 700px;
+    overflow: scroll;
+    margin: auto;
+    margin-top: 30px;
+    scrollbar-color: black white;
+    overflow-x: visible;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th {
+    width: 150px;
+    text-align: left;
+}
+
+th span {
+    margin-right: 5px;
+}
+
+#results-list table tr :nth-child(3){
+    width: 230px;
+}
+#results-list table tr :nth-child(4){
+    width: 150px;
+}
+
+tr:nth-child(2n+2) {
+    background-color: rgb(242, 242, 242);
+}
+
+tr:hover {
+    cursor: pointer;
+}
+
+.deputy-row:hover {
+    background-color: lightskyblue;
+    cursor: pointer;
+}
+</style>

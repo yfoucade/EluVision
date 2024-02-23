@@ -3,16 +3,10 @@ services:
     container_name: eluvision
     build:  ./src
     env_file: .env
+    volumes:
+      - "./src/eluvision-app/src:/src/eluvision-app/src"
     ports:
       - "4173:4173"
       - "5173:5173"
       - "8080:8080"
 
-
-volumes:
-  src-volume:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./src/
