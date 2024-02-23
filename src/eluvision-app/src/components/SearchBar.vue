@@ -40,3 +40,41 @@ export default {
   }
 }
 </script>
+
+<style>
+.form-wrapper {
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  padding: 0;
+  border: solid lightgrey 2px;
+  border-radius: 5px;
+  margin-top: 8px;
+  font-size: 17px;
+}
+
+.form-wrapper select {
+  border: none;
+  outline: none;
+  height: 2em;
+  font-size: 18px;
+}
+
+.form-wrapper input {
+  border: none;
+  outline: none;
+  height: 2em;
+  font-size: 18px;
+  margin-left: 5px;
+}
+
+.form-wrapper span {
+    margin-right: 5px;
+    margin-top: 50%;
+    height: fit-content;
+}
+
+.clear:hover {
+  cursor: pointer;
+}
+</style>

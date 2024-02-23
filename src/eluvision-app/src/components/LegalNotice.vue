@@ -59,3 +59,19 @@
     </div>
   </div>
 </template>
+
+<style>
+.legal-notice {
+  margin-top: 30px;
+}
+
+.legal-notice-content {
+  width: 50%;
+  margin: auto;
+  text-align: justify;
+}
+
+.legal-notice-content h3 {
+  margin-top: 25px;
+}
+</style>

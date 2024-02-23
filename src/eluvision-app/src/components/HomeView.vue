@@ -104,7 +104,7 @@ export default {
 
   computed: {
     filtered_list() {
-      let res = [ ...this.all_deputies ];
+      let res = [...this.all_deputies];
       if (this.search_string)
         res = this.all_deputies.filter((deputy_obj) => this.deputyMatchesSearch(deputy_obj, this.search_string));
       return res.sort((a, b) => (2 * this.ascending - 1) * a[this.sort_by].localeCompare(b[this.sort_by]));
@@ -201,45 +201,50 @@ export default {
 
 <style>
 #results-list {
-    width: fit-content;
-    max-height: 700px;
-    overflow: scroll;
-    margin: auto;
-    margin-top: 30px;
-    scrollbar-color: black white;
-    overflow-x: visible;
+  width: fit-content;
+  max-height: 700px;
+  overflow: scroll;
+  margin: auto;
+  margin-top: 30px;
+  scrollbar-color: black white;
+  overflow-x: visible;
 }
 
 table {
-    border-collapse: collapse;
+  border-collapse: collapse;
 }
 
 th {
-    width: 150px;
-    text-align: left;
+  width: 150px;
+  text-align: left;
 }
 
 th span {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
-#results-list table tr :nth-child(3){
-    width: 230px;
+#results-list table tr :nth-child(3) {
+  width: 230px;
 }
-#results-list table tr :nth-child(4){
-    width: 150px;
+
+#results-list table tr :nth-child(4) {
+  width: 150px;
 }
 
 tr:nth-child(2n+2) {
-    background-color: rgb(242, 242, 242);
+  background-color: rgb(242, 242, 242);
 }
 
 tr:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .deputy-row:hover {
-    background-color: lightskyblue;
-    cursor: pointer;
+  background-color: lightskyblue;
+  cursor: pointer;
+}
+
+.deputy-tag {
+  position: absolute;
 }
 </style>

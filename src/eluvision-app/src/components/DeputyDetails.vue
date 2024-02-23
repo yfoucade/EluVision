@@ -1,11 +1,11 @@
 <template>
   <div class="deputy-details" v-if="deputy_details">
 
-    <div class="card mb-3" style="max-width: 540px;min-height: 200px;">
+    <div class="card mb-3" style="max-width: 540px;min-height: 160px; overflow: scroll;">
       <div class="row g-0">
         <div class="col-md-4">
           <img class="img-fluid rounded-start"
-            :src="'https://nosdeputes.fr/depute/photo/' + deputy_details.slug + '/250'">
+            :src="'https://nosdeputes.fr/depute/photo/' + deputy_details.slug + '/260'">
         </div>
         <div class="col-md-8">
           <div class="card-body">
@@ -207,3 +207,56 @@ export default {
 }
 
 </script>
+
+<style>
+.deputy-details {
+  width: 50%;
+  max-width: 600px;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.card {
+  margin: auto;
+  height: fit-content;
+  width: fit-content;
+}
+
+.card-title {
+  font-weight: bold;
+}
+
+.external-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: fit-content;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.card-body {
+  height: 100%;
+}
+
+.external-links svg {
+  width: 30px;
+  height: 30px;
+  margin: 0 10px;
+}
+
+li {
+  list-style-type: none;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.responsibilities {
+  margin-top: 30px;
+}
+
+.addresses {
+  margin-top: 30px;
+}
+</style>
