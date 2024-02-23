@@ -118,7 +118,6 @@ export default {
       let response = await fetch('https://www.nosdeputes.fr/deputes/enmandat/json');
       let response_json = await response.json();
       this.all_deputies = response_json.deputes.map((obj) => { return obj.depute });
-      console.log(this.all_deputies);
     },
 
     updateSortBy(criterion) {
@@ -131,15 +130,7 @@ export default {
     },
 
     async showDetails(index) {
-      // this.current_deputy = this.filtered_list[index];
-      // let response = await fetch(this.current_deputy.url_nosdeputes_api);
-      // let response_json = await response.json();
-      // this.deputy_details = response_json.depute;
-      // this.deputyDetailsPreprocessing();
-      // this.state = 'details';
-      // console.log(`Showing details about ${this.current_deputy.nom}`);
       let slug = this.filtered_list[index].slug;
-      console.log(slug);
       this.$router.push({ path: `/details/${slug}` });
     },
 
@@ -178,7 +169,6 @@ export default {
       for (let email of this.deputy_details.emails)
         if (email.email.includes("assemblee-nationale.fr"))
           urls.email = email.email;
-      console.log(urls);
       this.deputy_details.urls = urls;
     },
 

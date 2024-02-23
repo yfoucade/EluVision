@@ -194,7 +194,6 @@ export default {
       for (let email of this.deputy_details.emails)
         if (email.email.includes("assemblee-nationale.fr"))
           urls.email = email.email;
-      console.log(urls);
       this.deputy_details.urls = urls;
     },
   },
