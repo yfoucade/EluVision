@@ -3,8 +3,6 @@ services:
     container_name: eluvision
     build:  ./src
     env_file: .env
-    volumes:
-      - ./src:/src
     ports:
       - "5173:5173"
       - "4173:4173"
