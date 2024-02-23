@@ -5,7 +5,8 @@
       <div class="row g-0">
         <div class="col-md-4">
           <img class="img-fluid rounded-start"
-            :src="'https://nosdeputes.fr/depute/photo/' + deputy_details.slug + '/260'">
+            :src="'https://nosdeputes.fr/depute/photo/' + deputy_details.slug + '/260'"
+            :alt="'Portrait de ' + deputy_details.nom">
         </div>
         <div class="col-md-8">
           <div class="card-body">

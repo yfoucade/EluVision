@@ -3,7 +3,7 @@
     <div class='footer-content'>
       <div class="license">
         <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank">
-          <img src="../assets/gplv3.png">
+          <img src="../assets/gplv3.png" alt="Logo GNU GPLv3">
         </a>
       </div>
       <div class="legal-notice-link">
