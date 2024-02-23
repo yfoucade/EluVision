@@ -90,8 +90,6 @@
       </div>
     </div>
 
-    <!-- TODO: lien vers le profile assemblee nationale -->
-
     <div class="responsibilities">
       <h2>Responsabilités</h2>
       <div class="accordion" id="accordionExample">
@@ -183,6 +181,7 @@ export default {
 
   methods: {
     deputyDetailsPreprocessing() {
+      // Sets the list of urls to display on the deputy's card
       let urls = {}
       for (let site of this.deputy_details.sites_web) {
         if (site.site.includes("twitter.com"))
