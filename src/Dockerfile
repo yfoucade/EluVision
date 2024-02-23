@@ -12,5 +12,4 @@ WORKDIR /src/eluvision-app
 RUN npm install vite
 RUN npm run build
 
-CMD npm run dev
-# CMD nginx -g "daemon off;"
+CMD nginx -g "daemon off;"
