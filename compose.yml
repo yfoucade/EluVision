@@ -2,7 +2,5 @@ services:
   eluvision:
     container_name: eluvision
     build:  ./src
-    env_file: .env
     ports:
       - "8080:8080"
-
