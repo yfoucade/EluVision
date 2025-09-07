@@ -73,7 +73,7 @@ export default {
 
   methods: {
     async init_deputy_list() {
-      let response = await fetch('https://www.nosdeputes.fr/deputes/enmandat/json');
+      let response = await fetch('https://www.nosdeputes.fr/deputes/json');
       let response_json = await response.json();
       this.all_deputies = response_json.deputes.map((obj) => { return obj.depute });
     },
