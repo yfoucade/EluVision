@@ -3,4 +3,4 @@ services:
     container_name: eluvision
     build:  ./src
     ports:
-      - "8080:8080"
+      - "localhost:8003:8080"
