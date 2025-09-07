@@ -11,7 +11,7 @@
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">{{ (deputy_details.sexe == 'F' ? 'Mme ' : 'M. ') + deputy_details.nom }}</h5>
-            <p class="card-text">{{ deputy_details.groupe.organisme }}</p>
+            <p class="card-text" v-if="deputy_details.groupe">{{ deputy_details.groupe.organisme }}</p>
             <p class="card-text">
               <small class="text-body-secondary">
                 <span v-if="deputy_details.nom_circo in departments_preposition">
