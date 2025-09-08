@@ -46,6 +46,7 @@ export default {
       ascending: true,
       current_deputy: null,
       show_deputy_tag: false,
+      prevent_blink: false,
       deputy_tag_img: "",
       mousePosX: 0,
       mousePosY: 0,
@@ -111,11 +112,13 @@ export default {
     },
 
     showDeputyTag(index) {
+      this.prevent_blink = true;
       this.deputy_tag_img = 'https://nosdeputes.fr/depute/photo/' + this.filtered_list[index].slug + '/100';
       this.show_deputy_tag = true;
     },
 
     hideDeputyTag() {
+      if (this.prevent_blink) return;
       this.show_deputy_tag = false;
     },
   },
@@ -128,6 +131,7 @@ export default {
     document.addEventListener("mousemove", (event) => {
       this.mousePosX = event.pageX;
       this.mousePosY = event.pageY;
+      this.prevent_blink = false;
     });
   }
 }
