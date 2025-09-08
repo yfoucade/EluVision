@@ -24,7 +24,8 @@
       </table>
 
       <div class="deputy-tag" v-if="show_deputy_tag && mousePosX"
-        :style="{ position: 'absolute', top: `${mousePosY + 3}px`, left: `${mousePosX}px`, }">
+        :style="{ position: 'absolute', top: `${mousePosY + 3}px`, left: `${mousePosX}px`, }"
+        @mousemove="updateMousePosition">
         <img :src="deputy_tag_img">
       </div>
     </div>
@@ -46,7 +47,6 @@ export default {
       ascending: true,
       current_deputy: null,
       show_deputy_tag: false,
-      prevent_blink: false,
       deputy_tag_img: "",
       mousePosX: 0,
       mousePosY: 0,
@@ -112,13 +112,11 @@ export default {
     },
 
     showDeputyTag(index) {
-      this.prevent_blink = true;
       this.deputy_tag_img = 'https://nosdeputes.fr/depute/photo/' + this.filtered_list[index].slug + '/100';
       this.show_deputy_tag = true;
     },
 
     hideDeputyTag() {
-      if (this.prevent_blink) return;
       this.show_deputy_tag = false;
     },
   },
@@ -127,11 +125,15 @@ export default {
     this.init_deputy_list();
   },
 
+  updateMousePosition(event) {
+    this.mousePosX = event.pageX;
+    this.mousePosY = event.pageY;
+  },
+
   mounted() {
     document.addEventListener("mousemove", (event) => {
       this.mousePosX = event.pageX;
       this.mousePosY = event.pageY;
-      this.prevent_blink = false;
     });
   }
 }
